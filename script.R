@@ -1,5 +1,4 @@
 ### MASTERARBEIT SS20
-### Bearbeiter: Matthias Priehs (ID: 454225)
 
 # Pakete laden
 library(ggplot2) # Grafiken
@@ -14,7 +13,7 @@ library(table1)
 library(car)
 
 # Verzeichnis wechseln
-setwd("H:/Google Drive/Uni/Uni M¸nster/Projektstudium MA/Masterarbeit/Fragebogen/Daten/R")
+setwd("")
 
 # Datensatz laden und anpassen
 data1 <- as.data.frame(read.csv("Bearbeitet.csv", dec = ",", sep = ";"))
@@ -43,11 +42,11 @@ ggplot(data = data1)+
         axis.title.y=element_blank())
 
 # Barplot Umsatz
-levels(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)[2:6] <- c(">5.000.000???","0-100.000???","1.000.001-5.000.000???","100.001-500.000???","500.001-1.000.000???")
-data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in.... <- factor(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....,
+levels(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)[2:6] <- c(">5.000.000???","0-100.000???","1.000.001-5.000.000???","100.001-500.000???","500.001-1.000.000???")
+data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in.... <- factor(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....,
                                                                            levels = c("0-100.000???","100.001-500.000???","500.001-1.000.000???","1.000.001-5.000.000???",">5.000.000???"))                                                                              
 
-ggplot(data1,aes(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....,y = (..count..)/sum(..count..)))+
+ggplot(data1,aes(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....,y = (..count..)/sum(..count..)))+
   geom_bar(width=0.7,show.legend=TRUE)+
   scale_y_continuous(labels = scales::percent)+
   theme(text=element_text(family="serif",size=17,colour = "black"))+
@@ -55,8 +54,8 @@ ggplot(data1,aes(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....
         axis.ticks.x=element_blank(),
         axis.title.y=element_blank())
 
-data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....<- fct_rev(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)
-ggplot(data1,aes(x="",y=(..count..)/sum(..count..),fill=data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....))+
+data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....<- fct_rev(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)
+ggplot(data1,aes(x="",y=(..count..)/sum(..count..),fill=data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....))+
   geom_bar(width=1)+
   scale_y_continuous(labels = scales::percent)+
   theme_calc()+
@@ -107,7 +106,7 @@ artikelarten <- ggplot(data1,aes(x="",y=(..count..)/sum(..count..),fill=data1$X1
 
 # Summary Table
 # Option 1
-data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....<- fct_rev(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)
+data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....<- fct_rev(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)
 
 levels(data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....)[2:7] <- c(">500???","0-10???","10,01-25???","100,01-500???","25,01-50???","50,01-100???")
 data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in.... <- factor(data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....,
@@ -118,19 +117,19 @@ data1$X11..Wie.hoch.ist.Ihre.durchschnittliche.produktbezogene.Marge..in.... <- 
                                                                                                     levels = c("0-5%","6-10%","11-20%","21-50%",">50%"))                                                                              
 
 label(data1$X1..Seit.wie.vielen.Jahren.verkaufen.Sie.schon.auf.Amazon.) <- "Anzahl der aktiven Jahre auf Amazon"
-label(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....) <- "J‰hrlicher Umsatz"
+label(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....) <- "J√§hrlicher Umsatz"
 label(data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....) <- "Durchschnittlicher Verkaufspreis"
 
 table1(~ data1$X1..Seit.wie.vielen.Jahren.verkaufen.Sie.schon.auf.Amazon. +
-         data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in.... +
+         data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in.... +
          data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in.... | data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an., data=data1, 
        topclass="Rtable1-times", overall="Gesamt")
 
-# Option 2 (Mit Spalten¸berschriften)
-# --> Als HTML Speichern, in Excel ˆffnen und bearbeiten, Dann in Word kopieren (Grˆﬂe an Fenster anpassen)
+# Option 2 (Mit Spalten√ºberschriften)
+# --> Als HTML Speichern, in Excel √∂ffnen und bearbeiten, Dann in Word kopieren (Gr√∂√üe an Fenster anpassen)
 levels(data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)[2:4] <- c("Eigen- und Fremdmarken","Eigenmarken","Fremdmarken")
 labels <- list(variables=list(X1..Seit.wie.vielen.Jahren.verkaufen.Sie.schon.auf.Amazon.="Anzahl der aktiven Jahre",
-                              X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....="J‰hrlicher Umsatz",
+                              X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....="J√§hrlicher Umsatz",
                               X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....="Durchschnittlicher Verkaufspreis",
                               X11..Wie.hoch.ist.Ihre.durchschnittliche.produktbezogene.Marge..in....="Durchschnittliche Marge"),
                groups=list("Artikelart",""))
@@ -143,14 +142,14 @@ table1(strata, labels, groupspan=c(3,1),topclass="Rtable1-times")
 data1_sub_fremd <- data.frame(data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.,
                               data1$X13..Konkurrieren.Sie.mit.Amazon.direkt.um.die..Buy.Box..bei.bestimmten.Artikeln.,
                               data1$X14..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen.,
-                              data1$X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                              data1$Stark.reduziert..1....Stark.erhˆht..7.,
-                              data1$X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.,
+                              data1$X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                              data1$Stark.reduziert..1....Stark.erh√∂ht..7.,
+                              data1$X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.,
                               data1$X23..Konkurrieren.Sie.mit.Amazon.direkt.um.die..Buy.Box..bei.bestimmten.Artikeln.,
                               data1$X24..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen.,
-                              data1$X25..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                              data1$Stark.reduziert..1....Stark.erhˆht..7..2,
-                              data1$X27..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.)
+                              data1$X25..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                              data1$Stark.reduziert..1....Stark.erh√∂ht..7..2,
+                              data1$X27..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.)
 levels(data1_sub_fremd$data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)[levels(data1_sub_fremd$data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)=="Eigen- und Fremdmarken"] <- "Fremdmarken"
 data1_sub_fremd <- data1_sub_fremd[data1_sub_fremd[,1] == "Fremdmarken",]
 
@@ -162,78 +161,78 @@ data1_sub_fremd$data1.X14..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.
                                                                                                                             data1_sub_fremd$data1.X24..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen.)
 data1_sub_fremd$data1.X14..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen. <- trimws(data1_sub_fremd$data1.X14..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen.)
 
-data1_sub_fremd$data1.X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- paste(data1_sub_fremd$data1.X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                                                                                                                            data1_sub_fremd$data1.X25..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
-data1_sub_fremd$data1.X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- trimws(data1_sub_fremd$data1.X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
+data1_sub_fremd$data1.X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- paste(data1_sub_fremd$data1.X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                                                                                                                            data1_sub_fremd$data1.X25..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
+data1_sub_fremd$data1.X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- trimws(data1_sub_fremd$data1.X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
 
-data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7.[data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7.==0]  <- ""
-data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7..2[data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7..2==0]  <- ""
+data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7.[data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7.==0]  <- ""
+data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7..2[data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7..2==0]  <- ""
 
-data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7. <- paste(data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7.,
-                                                                      data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7..2)
-data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7. <- trimws(data1_sub_fremd$data1.Stark.reduziert..1....Stark.erhˆht..7.)
+data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7. <- paste(data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7.,
+                                                                      data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7..2)
+data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7. <- trimws(data1_sub_fremd$data1.Stark.reduziert..1....Stark.erh√∂ht..7.)
 
-data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen. <- paste(data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.,
-                                                                                                                                                                            data1_sub_fremd$data1.X27..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.) 
-data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen. <- trimws(data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.)
+data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen. <- paste(data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.,
+                                                                                                                                                                            data1_sub_fremd$data1.X27..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.) 
+data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen. <- trimws(data1_sub_fremd$data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.)
 
-data1_sub_fremd <- data1_sub_fremd[,-c(7:11)] # Entferne ¸berfl¸ssige Spalten
+data1_sub_fremd <- data1_sub_fremd[,-c(7:11)] # Entferne √ºberfl√ºssige Spalten
 
 names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an."] <- "Artikelart" # Variablen umbenennen
 names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X13..Konkurrieren.Sie.mit.Amazon.direkt.um.die..Buy.Box..bei.bestimmten.Artikeln."] <- "Konkurrenz"
 names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X14..Wie.viel.Prozent.Ihrer.Artikel.sind.von.der.direkten.Konkurrenz.durch.Amazon.betroffen."] <- "Wie viele Artikel sind betroffen?"
-names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X15..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen."] <- "Einstiegszeitpunkt"
-names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.Stark.reduziert..1....Stark.erhˆht..7."] <- "Margenveraenderung"
-names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen."] <- "Musste Produkt gelˆscht werden?"
+names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X15..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen."] <- "Einstiegszeitpunkt"
+names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.Stark.reduziert..1....Stark.erh√∂ht..7."] <- "Margenveraenderung"
+names(data1_sub_fremd)[names(data1_sub_fremd) == "data1.X17..Haben.Sie.schon.einmal.ein.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen."] <- "Musste Produkt gel√∂scht werden?"
 
 # Datensatz Eigenmarken
 data1_sub_eigen <- data.frame(data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.,
-                              data1$X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.,
+                              data1$X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.,
                               data1$X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen.,
-                              data1$X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                              data1$Stark.reduziert..1....Stark.erhˆht..7..1,
-                              data1$X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.,
-                              data1$X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.,
+                              data1$X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                              data1$Stark.reduziert..1....Stark.erh√∂ht..7..1,
+                              data1$X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.,
+                              data1$X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.,
                               data1$X29..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen.,
-                              data1$X30..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                              data1$Stark.reduziert..1....Stark.erhˆht..7..3,
-                              data1$X32..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.)
+                              data1$X30..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                              data1$Stark.reduziert..1....Stark.erh√∂ht..7..3,
+                              data1$X32..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.)
 levels(data1_sub_eigen$data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)[levels(data1_sub_eigen$data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)=="Eigen- und Fremdmarken"] <- "Eigenmarken"
 data1_sub_eigen <- data1_sub_eigen[data1_sub_eigen[,1] == "Eigenmarken",]
 
-data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an. <- paste(data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.,
-                                                                                                                                             data1_sub_eigen$data1.X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.)
-data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an. <- trimws(data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.)
+data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an. <- paste(data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.,
+                                                                                                                                             data1_sub_eigen$data1.X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.)
+data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an. <- trimws(data1_sub_eigen$data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.)
 
 data1_sub_eigen$data1.X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen. <- paste(data1_sub_eigen$data1.X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen.,
                                                                                                                                            data1_sub_eigen$data1.X29..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen.)
 data1_sub_eigen$data1.X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen. <- trimws(data1_sub_eigen$data1.X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen.)
 
-data1_sub_eigen$data1.X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- paste(data1_sub_eigen$data1.X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
-                                                                                                                              data1_sub_eigen$data1.X30..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
-data1_sub_eigen$data1.X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- trimws(data1_sub_eigen$data1.X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
+data1_sub_eigen$data1.X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- paste(data1_sub_eigen$data1.X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.,
+                                                                                                                              data1_sub_eigen$data1.X30..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
+data1_sub_eigen$data1.X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen. <- trimws(data1_sub_eigen$data1.X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen.)
 
-data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1[data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1==0]  <- ""
-data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..3[data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..3==0]  <- ""
+data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1[data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1==0]  <- ""
+data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..3[data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..3==0]  <- ""
 
-data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1 <- paste(data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1,
-                                                                        data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..3)
-data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1 <- trimws(data1_sub_eigen$data1.Stark.reduziert..1....Stark.erhˆht..7..1)
+data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1 <- paste(data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1,
+                                                                        data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..3)
+data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1 <- trimws(data1_sub_eigen$data1.Stark.reduziert..1....Stark.erh√∂ht..7..1)
 
-data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen. <- paste(data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.,
-                                                                                                                                                                                        data1_sub_eigen$data1.X32..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.)
-data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen. <- trimws(data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen.)
+data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen. <- paste(data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.,
+                                                                                                                                                                                        data1_sub_eigen$data1.X32..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.)
+data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen. <- trimws(data1_sub_eigen$data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen.)
 
-data1_sub_eigen <- data1_sub_eigen[,-c(7:11)] # Entferne ¸berfl¸ssige Spalten
+data1_sub_eigen <- data1_sub_eigen[,-c(7:11)] # Entferne √ºberfl√ºssige Spalten
 
 names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X12..Welche.Arten.von.Artikeln.bieten.Sie.an."] <- "Artikelart" # Variablen umbenennen
-names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an."] <- "Konkurrenz"
+names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an."] <- "Konkurrenz"
 names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X19..Wie.viel.Prozent.Ihrer.Eigenmarken.Artikel.sind.von.der.Konkurrenz.durch.Amazon.Eigenmarken.betroffen."] <- "Wie viele Artikel sind betroffen?"
-names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X20..Ist.Amazon.grˆﬂtenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen."] <- "Einstiegszeitpunkt"
-names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.Stark.reduziert..1....Stark.erhˆht..7..1"] <- "Margenveraenderung"
-names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m¸ssen."] <- "Musste Produkt gelˆscht werden?"
+names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X20..Ist.Amazon.gr√∂√ütenteils.vor.oder.nach.Ihnen.als.Konkurrent.in.Ihr.Sortiment.eingestiegen."] <- "Einstiegszeitpunkt"
+names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.Stark.reduziert..1....Stark.erh√∂ht..7..1"] <- "Margenveraenderung"
+names(data1_sub_eigen)[names(data1_sub_eigen) == "data1.X22..Haben.Sie.schon.einmal.ein.Eigenmarken.Produkt.aufgrund.von.Verkaufsproblemen.durch.die.direkte.Konkurrenz.von.Amazon.vom.Marktplatz.nehmen.m√ºssen."] <- "Musste Produkt gel√∂scht werden?"
 
-# Merge beide Datens‰tze und Bearbeite
+# Merge beide Datens√§tze und Bearbeite
 data1_sub_fremd <- rbind(data1_sub_fremd, data1_sub_eigen)
 data1_sub_eigen_fremd <- data1_sub_fremd
 rm(data1_sub_fremd)
@@ -244,15 +243,15 @@ data1_sub_eigen_fremd <- data1_sub_eigen_fremd[data1_sub_eigen_fremd[,2]!="Ja Ne
 data1_sub_eigen_fremd$`Wie viele Artikel sind betroffen?`[data1_sub_eigen_fremd$Konkurrenz == "Nein"] <- "Keine Konkurrenz"
 data1_sub_eigen_fremd$Einstiegszeitpunkt[data1_sub_eigen_fremd$Konkurrenz == "Nein"] <- "Keine Konkurrenz"
 data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Konkurrenz == "Nein"] <- "Keine Konkurrenz"
-data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?`[data1_sub_eigen_fremd$Konkurrenz == "Nein"] <- "Keine Konkurrenz"
-data1_sub_eigen_fremd$`Wie viele Artikel sind betroffen?`[data1_sub_eigen_fremd$Konkurrenz == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
-data1_sub_eigen_fremd$Einstiegszeitpunkt[data1_sub_eigen_fremd$Konkurrenz == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
-data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Konkurrenz == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
-data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?`[data1_sub_eigen_fremd$Konkurrenz == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
-data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Einstiegszeitpunkt == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?`[data1_sub_eigen_fremd$Konkurrenz == "Nein"] <- "Keine Konkurrenz"
+data1_sub_eigen_fremd$`Wie viele Artikel sind betroffen?`[data1_sub_eigen_fremd$Konkurrenz == "Ich wei√ü es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$Einstiegszeitpunkt[data1_sub_eigen_fremd$Konkurrenz == "Ich wei√ü es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Konkurrenz == "Ich wei√ü es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?`[data1_sub_eigen_fremd$Konkurrenz == "Ich wei√ü es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Einstiegszeitpunkt == "Ich wei√ü es nicht"] <- "Nicht bekannt"
 
-data1_sub_eigen_fremd$Konkurrenz[data1_sub_eigen_fremd$Konkurrenz == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
-data1_sub_eigen_fremd$Einstiegszeitpunkt[data1_sub_eigen_fremd$Einstiegszeitpunkt == "Ich weiﬂ es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$Konkurrenz[data1_sub_eigen_fremd$Konkurrenz == "Ich wei√ü es nicht"] <- "Nicht bekannt"
+data1_sub_eigen_fremd$Einstiegszeitpunkt[data1_sub_eigen_fremd$Einstiegszeitpunkt == "Ich wei√ü es nicht"] <- "Nicht bekannt"
 data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Einstiegszeitpunkt == "Vorher"] <- "Einstieg vorher"
 data1_sub_eigen_fremd$Margenveraenderung[data1_sub_eigen_fremd$Margenveraenderung == ""] <- "Nicht bekannt"
 
@@ -267,39 +266,39 @@ data1_sub_eigen_fremd$Einstiegszeitpunkt <- factor(data1_sub_eigen_fremd$Einstie
                                                    levels = c("Nachher","Vorher","Nicht bekannt","Keine Konkurrenz"))
 
 data1_sub_eigen_fremd$Margenveraenderung <- as.factor(data1_sub_eigen_fremd$Margenveraenderung)
-levels(data1_sub_eigen_fremd$Margenveraenderung)[1:6] <- c("Sehr stark reduziert","Stark reduziert","M‰ﬂig reduziert","Nicht ver‰ndert","M‰ﬂig erhˆht","Sehr stark erhˆht")
+levels(data1_sub_eigen_fremd$Margenveraenderung)[1:6] <- c("Sehr stark reduziert","Stark reduziert","M√§√üig reduziert","Nicht ver√§ndert","M√§√üig erh√∂ht","Sehr stark erh√∂ht")
 data1_sub_eigen_fremd$Margenveraenderung <- factor(data1_sub_eigen_fremd$Margenveraenderung,
-                                                   levels = c("Sehr stark reduziert","Stark reduziert","M‰ﬂig reduziert","Nicht ver‰ndert","M‰ﬂig erhˆht","Sehr stark erhˆht","Einstieg vorher",
+                                                   levels = c("Sehr stark reduziert","Stark reduziert","M√§√üig reduziert","Nicht ver√§ndert","M√§√üig erh√∂ht","Sehr stark erh√∂ht","Einstieg vorher",
                                                               "Nicht bekannt","Keine Konkurrenz"))
 
-data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?` <- as.factor(data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?`)
-levels(data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?`)[1:4] <- c("Ja","Keine Konkurrenz","Nein","Nicht bekannt")
-data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?` <- factor(data1_sub_eigen_fremd$`Musste Produkt gelˆscht werden?`,
+data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?` <- as.factor(data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?`)
+levels(data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?`)[1:4] <- c("Ja","Keine Konkurrenz","Nein","Nicht bekannt")
+data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?` <- factor(data1_sub_eigen_fremd$`Musste Produkt gel√∂scht werden?`,
                                                                   levels = c("Ja","Nein","Nicht bekannt","Keine Konkurrenz"))
 
 
 labels <- list(variables=list(Konkurrenz="Ist Amazon Konkurrent?",
                               `Wie viele Artikel sind betroffen?`="Wie viele Artikel sind betroffen?",
                               Einstiegszeitpunkt="Wann ist Amazon eingestiegen?",
-                              Margenveraenderung="Wie hat sich Marge ver‰ndert?",
-                              `Musste Produkt gelˆscht werden?`="Musste Produkt schon gelˆscht werden?"),
+                              Margenveraenderung="Wie hat sich Marge ver√§ndert?",
+                              `Musste Produkt gel√∂scht werden?`="Musste Produkt schon gel√∂scht werden?"),
                groups=list("Artikelart",""))
 
 strata <- c(split(data1_sub_eigen_fremd,data1_sub_eigen_fremd$Artikelart,drop=TRUE),list(Gesamt=data1_sub_eigen_fremd)) 
 table1(strata, labels, groupspan=c(3,1),topclass="Rtable1-times")
 
-# Abh‰ngigkeitspotenzial bestimmen (H2)
-data3 <- data.frame(data1$X4..Bitte.geben.Sie.den.Anteil.Ihrer.Ums‰tze.auf.den.jeweiligen.Verkaufskan‰len.an.Ihrem.Gesamtumsatz.an..in...,data1$Amazon,data1$Ebay,data1$Eigener.Online.Shop,data1$Andere.Plattformen,data1$Station‰r..offline.)
-names(data3)[names(data3) == "data1.X4..Bitte.geben.Sie.den.Anteil.Ihrer.Ums‰tze.auf.den.jeweiligen.Verkaufskan‰len.an.Ihrem.Gesamtumsatz.an..in..."] <- "Hilfsvektor"
+# Abh√§ngigkeitspotenzial bestimmen (H2)
+data3 <- data.frame(data1$X4..Bitte.geben.Sie.den.Anteil.Ihrer.Ums√§tze.auf.den.jeweiligen.Verkaufskan√§len.an.Ihrem.Gesamtumsatz.an..in...,data1$Amazon,data1$Ebay,data1$Eigener.Online.Shop,data1$Andere.Plattformen,data1$Station√§r..offline.)
+names(data3)[names(data3) == "data1.X4..Bitte.geben.Sie.den.Anteil.Ihrer.Ums√§tze.auf.den.jeweiligen.Verkaufskan√§len.an.Ihrem.Gesamtumsatz.an..in..."] <- "Hilfsvektor"
 names(data3)[names(data3) == "data1.Amazon"] <- "Amazon"
 names(data3)[names(data3) == "data1.Ebay"] <- "Ebay"
 names(data3)[names(data3) == "data1.Eigener.Online.Shop"] <- "Online-Shop"
 names(data3)[names(data3) == "data1.Andere.Plattformen"] <- "Andere Plattformen"
-names(data3)[names(data3) == "data1.Station‰r..offline."] <- "Station‰r"
+names(data3)[names(data3) == "data1.Station√§r..offline."] <- "Station√§r"
 
 data3 <- melt(data=data3,
                 id.vars       = c("Hilfsvektor"),
-                measure.vars  = c("Amazon","Ebay","Online-Shop","Andere Plattformen","Station‰r"),
+                measure.vars  = c("Amazon","Ebay","Online-Shop","Andere Plattformen","Station√§r"),
                 variable.name = "Verkaufskanal",
                 value.name    = "Wert")
 
@@ -340,14 +339,14 @@ labels2 <- list(variables=list(Amazon="Amazon",
                               Ebay="Ebay",
                               Eigener.Online.Shop="Eigener Online.Shop",
                               Andere.Plattformen="Andere Plattformen",
-                              Station‰r..offline.="Station‰r"),
+                              Station√§r..offline.="Station√§r"),
                groups=list("Artikelart",""))
 strata2 <- c(split(data1,data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.,drop=TRUE),list(Gesamt=data1)) 
 table1(strata2, labels2, groupspan=c(3,1),topclass="Rtable1-times")
 
-# Genereller Konkurrenzdruck und zuk¸nftige Bedeutung von Amazon (H1 & H2)
+# Genereller Konkurrenzdruck und zuk√ºnftige Bedeutung von Amazon (H1 & H2)
 labels3 <- list(variables=list(Sehr.gering..1....Sehr.stark..7.="Genereller Konkurrenzdruck",
-                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk¸nftige Bedeutung von Amazon"),
+                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk√ºnftige Bedeutung von Amazon"),
                 groups=list("Artikelart",""))
 strata3 <- c(split(data1, data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.,drop=TRUE),list(Gesamt=data1))
 table1(strata3, labels3, groupspan=c(3,1),topclass="Rtable1-times",test=TRUE)
@@ -358,44 +357,44 @@ TukeyHSD(aov(data1$Sehr.gering..1....Sehr.stark..7. ~ data1$X12..Welche.Arten.vo
 summary(aov(data1$Sehr.unwichtig..1....Sehr.wichtig..7. ~ data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)) # P-Wert
 TukeyHSD(aov(data1$Sehr.unwichtig..1....Sehr.wichtig..7. ~ data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.)) # Welche Gruppen unterscheiden sich signifikant?
 
-# Willk¸rliche Artikellˆschung und Datenauswertung durch Amazon (H3)
-data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert. <- droplevels(data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert.)
-labels4 <- list(variables=list(X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert.="Willk¸rliche Lˆschung durch Amazon",
+# Willk√ºrliche Artikell√∂schung und Datenauswertung durch Amazon (H3)
+data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert. <- droplevels(data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert.)
+labels4 <- list(variables=list(X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert.="Willk√ºrliche L√∂schung durch Amazon",
                               Sehr.unwahrscheinlich..1....Sehr.wahrscheinlich..7.="Datenauswertung durch Amazon"),
                groups=list("Artikelart",""))
 strata4 <- c(split(data1,data1$X12..Welche.Arten.von.Artikeln.bieten.Sie.an.,drop=TRUE),list(Gesamt=data1)) 
 table1(strata4, labels4, groupspan=c(3,1),topclass="Rtable1-times",test=TRUE)
 
-# Auswertung betroffener H‰ndler
+# Auswertung betroffener H√§ndler
 data1['Betroffen'] <- NA
 data1$Betroffen <- ifelse(data1$X13..Konkurrieren.Sie.mit.Amazon.direkt.um.die..Buy.Box..bei.bestimmten.Artikeln.=="Ja","Ja",
-                    ifelse(data1$X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.=="Ja","Ja",
+                    ifelse(data1$X18..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.=="Ja","Ja",
                            ifelse(data1$X23..Konkurrieren.Sie.mit.Amazon.direkt.um.die..Buy.Box..bei.bestimmten.Artikeln.=="Ja","Ja",
-                                  ifelse(data1$X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.ƒ...an.=="Ja","Ja","Nein"
+                                  ifelse(data1$X28..Bietet.Amazon.vergleichbare.Produkte.Ihrer.Eigenmarken.unter.eigenen.Marken..z.B..AmazonBasics.o.√Ñ...an.=="Ja","Ja","Nein"
                                   ))))
 data1$Betroffen <- as.factor(data1$Betroffen)
 
-labels5 <- list(variables=list(X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert.="Lˆschung oder Deaktivierung durch Amazon",
+labels5 <- list(variables=list(X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert.="L√∂schung oder Deaktivierung durch Amazon",
                                Sehr.unwahrscheinlich..1....Sehr.wahrscheinlich..7.="Datenauswertung durch Amazon",
-                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk¸nftige Bedeutung von Amazon"),
+                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk√ºnftige Bedeutung von Amazon"),
                 groups=list("Betroffen durch direkte Konkurrenz",""))
 strata5 <- c(split(data1, data1$Betroffen),list(Gesamt=data1))
 table1(strata5, labels5, groupspan=c(2,1),topclass="Rtable1-times")
 
-ggplot(data1,aes(x=data1$Betroffen,fill=data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert.))+
+ggplot(data1,aes(x=data1$Betroffen,fill=data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert.))+
   geom_bar(position="dodge",width=0.7,show.legend=TRUE)+
   theme_calc()+
-  scale_fill_manual(values = cbp1, name = "Betroffen von willk¸rlichen \nLˆschungen?", labels = c("Ja", "Nein"))+
+  scale_fill_manual(values = cbp1, name = "Betroffen von willk√ºrlichen \nL√∂schungen?", labels = c("Ja", "Nein"))+
   scale_x_discrete(labels=c("Direkte Konkurrenz \nzu Amazon", "Keine direkte Konkurrenz \nzu Amazon"))+
   theme(text=element_text(family="serif",size=15,colour = "black"),
         axis.title.x=element_blank(),
         axis.ticks.x=element_blank(),
         axis.title.y=element_blank())
 
-ggplot(data1,aes(x=data1$Betroffen,y=(..count..)/sum(..count..),fill=data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gelˆscht.oder.deaktiviert.))+
+ggplot(data1,aes(x=data1$Betroffen,y=(..count..)/sum(..count..),fill=data1$X33..Wurde.einer.Ihrer.Artikel.schon.einmal.ohne.offensichtlichen.Grund.seitens.Amazon.gel√∂scht.oder.deaktiviert.))+
   geom_bar(width=0.7,show.legend=TRUE)+
   theme_calc()+
-  scale_fill_manual(values = cbp1, name = "Betroffen von willk¸rlichen \nLˆschungen?", labels = c("Ja", "Nein"))+
+  scale_fill_manual(values = cbp1, name = "Betroffen von willk√ºrlichen \nL√∂schungen?", labels = c("Ja", "Nein"))+
   scale_x_discrete(labels=c("Direkte Konkurrenz \nzu Amazon", "Keine direkte Konkurrenz \nzu Amazon"))+
   scale_y_continuous(labels = scales::percent)+
   theme(text=element_text(family="serif",size=15,colour = "black"),
@@ -419,13 +418,13 @@ names(data1$X11..Wie.hoch.ist.Ihre.durchschnittliche.produktbezogene.Marge..in..
 levels(data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....)[1:6] <- c("1","2","3","4","5","6")
 data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in.... <- as.integer(data1$X5..Wie.hoch.ist.der.durchschnittliche.Verkaufspreis.Ihrer.Waren.auf.Amazon..in....)
 
-levels(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)[1:5] <- c("1","2","3","4","5")
-data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in.... <- as.integer(data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)
+levels(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)[1:5] <- c("1","2","3","4","5")
+data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in.... <- as.integer(data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)
 
-levels(data1$X6..Bitte.sch‰tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.)[2:7] <- c("6","1","2","4","5","3")
-data1$X6..Bitte.sch‰tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt. <- factor(data1$X6..Bitte.sch‰tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.,
+levels(data1$X6..Bitte.sch√§tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.)[2:7] <- c("6","1","2","4","5","3")
+data1$X6..Bitte.sch√§tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt. <- factor(data1$X6..Bitte.sch√§tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.,
                                                                                                     levels = c("1","2","3","4","5","6"))                                                                              
-data1$X6..Bitte.sch‰tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt. <- as.integer(data1$X6..Bitte.sch‰tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.)
+data1$X6..Bitte.sch√§tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt. <- as.integer(data1$X6..Bitte.sch√§tzen.Sie..Wie.viele.Fragen.werden.im.Durchschnitt.zu.Ihren.Produkten.auf.der.Produktdetailseite.gestellt.)
 
 levels(data1$X9..Wie.hoch.sind.Ihre.durchschnittlichen.Versandkosten.pro.Sendung..in....)[2:6] <- c("5","1","3","4","2")
 data1$X9..Wie.hoch.sind.Ihre.durchschnittlichen.Versandkosten.pro.Sendung..in.... <- factor(data1$X9..Wie.hoch.sind.Ihre.durchschnittlichen.Versandkosten.pro.Sendung..in....,
@@ -448,15 +447,15 @@ summary(model)
 model2 <- glm(data1$Betroffen ~ data1$Marge + data1$Umsatz + data1$Verkaufspreis + data1$Fragen + data1$Versandkosten, family = binomial(link = "logit"), data = data1)
 summary(model2)
 
-# N¸tzliches f¸r sp‰ter
-labels6 <- list(variables=list(X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....="UMSATZ",
+# N√ºtzliches f√ºr sp√§ter
+labels6 <- list(variables=list(X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....="UMSATZ",
                                Sehr.unwahrscheinlich..1....Sehr.wahrscheinlich..7.="Datenauswertung durch Amazon",
-                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk¸nftige Bedeutung von Amazon"),
+                               Sehr.unwichtig..1....Sehr.wichtig..7.="Zuk√ºnftige Bedeutung von Amazon"),
                 groups=list("Betroffen durch direkte Konkurrenz",""))
 strata6 <- c(split(data1, data1$Betroffen),list(Gesamt=data1))
 table1(strata6, labels6, groupspan=c(2,1),topclass="Rtable1-times")
 
-mytable <- table(data1$X1..Seit.wie.vielen.Jahren.verkaufen.Sie.schon.auf.Amazon.,data1$X3..Wie.hoch.ist.Ihr.aktueller..j‰hrlicher.Umsatz..in....)
+mytable <- table(data1$X1..Seit.wie.vielen.Jahren.verkaufen.Sie.schon.auf.Amazon.,data1$X3..Wie.hoch.ist.Ihr.aktueller..j√§hrlicher.Umsatz..in....)
                  
 ftable(mytable)
 
